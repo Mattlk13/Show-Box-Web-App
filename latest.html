@@ -109,7 +109,7 @@ window.onload = function() {
 
             var tmp = JSON.parse(xhttp.responseText);
             for (var i = 0; i < tmp.tv.length; i++){
-                    document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp.tv[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+tmp.tv[i].poster+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp.tv[i].title+'</h2> </article>');
+                    document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp.tv[i].id+'" class="card__link"> <span class="highlight"></span> <img src="https://dev.benworld.net/sb/local/ssl-proxy/'+tmp.tv[i].poster.replace("https://", "")+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp.tv[i].title+'</h2> </article>');
                 }
 
             }
@@ -132,7 +132,7 @@ window.onload = function() {
 
             var tmp = JSON.parse(xhttp.responseText);
             for (var i = 0; i < tmp.movie.length; i++){
-                    document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp.movie[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+tmp.movie[i].poster+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp.movie[i].title+'</h2> </article>');
+                    document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp.movie[i].id+'" class="card__link"> <span class="highlight"></span> <img src="https://dev.benworld.net/sb/local/ssl-proxy/'+tmp.movie[i].poster.replace("https://", "")+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp.movie[i].title+'</h2> </article>');
                 }
 
             }
