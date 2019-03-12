@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Show Box Web App | TV Shows</title>
+      <title>Show Box Web App | New Releases</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
@@ -39,14 +39,14 @@ display: none!important;}
       <li class="nav-item">
         <a class="nav-link" href="/">News</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="tv-list.html">TV Shows <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="tv-list.html">TV Shows</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="movies-list.html">Movies</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="latest.html">New Releases</a>
+      <li class="nav-item active">
+        <a class="nav-link" href="latest.html">New Releases <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -67,7 +67,7 @@ display: none!important;}
     <br />
 
 <script>
-//tv_list.js
+//lasest.js
 
 // --- Set vars --- //
 
@@ -83,12 +83,12 @@ xhttp.onreadystatechange = function() {
         
     var tmp = JSON.parse(xhttp.responseText);
     for (var i = 0; i < 100; i++){
-            document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+tmp[i].poster+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp[i].title+'</h2> </article>');
+            document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp.tv[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+tmp.tv[i].poster+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp.tv[i].title+'</h2> </article>');
         }
 
     }
 };
-xhttp.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/tv_list/", true);
+xhttp.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/updates/?", true);
 xhttp.send();
 
 // var more = new XMLHttpRequest();
