@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Show Box Web App | TV Shows</title>
+      <title>Show Box Web App | Search Shows</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png">
@@ -20,6 +20,8 @@
     <script src="https://bootswatch.com/_vendor/jquery/dist/jquery.min.js"></script>
     <script src="https://bootswatch.com/_vendor/popper.js/dist/umd/popper.min.js"></script>
     <script src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- other scripts -->
+    <script src="assets/scripts/global.js"></script>
     <style>
     img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
 display: none!important;}
@@ -39,8 +41,8 @@ display: none!important;}
       <li class="nav-item">
         <a class="nav-link" href="/">News</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="tv-list.html">TV Shows <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="tv-list.html">TV Shows</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="movies-list.html">Movies</a>
@@ -50,7 +52,7 @@ display: none!important;}
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" action="tv-search.html" method="get">
-      <input class="form-control mr-sm-2" type="text" name="query" placeholder="Search shows...">
+      <input class="form-control mr-sm-2" type="text" name="query" id="search-bar" placeholder="Search shows...">
       <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
@@ -59,7 +61,20 @@ display: none!important;}
     <div style="height:90px;"></div>
 <!-- content -->
 <div class="container">
-  
+    <ul class="nav nav-tabs" id="tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="tv-search.html" id="tv-tab">Shows</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="movie-search.html" id=movie-tab>Movies</a>
+      </li>
+<!--
+      <li class="nav-item">
+        <a class="nav-link disabled" tabindex="-1" aria-disabled="true" href="?type=my">My</a>
+      </li>
+-->
+    </ul>
+    <br />
   <div id="list"></div>
   
 </div>
@@ -67,52 +82,39 @@ display: none!important;}
     <br />
 
 <script>
-//tv_list.js
+//tv-search.js
 
 // --- Set vars --- //
+var type = getAllUrlParams().type;
+var query = getAllUrlParams().query;
+if(query != null){
+    var searchBar = document.getElementById("search-bar");
+    searchBar.value = query;
+    document.getElementById("tv-tab").href = "tv-search.html?query="+query;
+    document.getElementById("movie-tab").href = "movie-search.html?query="+query;
+}
 
 window.onload = function() {
     //window is loaded, send requests
+        // request //
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.status == 200 || this.status == 302) {
+                //go ahead and do stuff:
+                document.getElementById("list").innerHTML = "";
 
+            var tmp = JSON.parse(xhttp.responseText);
+            for (var i = 0; i < tmp.length; i++){
+                    document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+tmp[i].poster+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp[i].title+'</h2> </article>');
+                }
+
+            }
+        };
+        xhttp.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/tv_list/?query="+query, true);
+        xhttp.send();
+        
 }
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.status == 200 || this.status == 302) {
-        //go ahead and do stuff:
-        document.getElementById("list").innerHTML = "";
-        
-    var tmp = JSON.parse(xhttp.responseText);
-    for (var i = 0; i < 100; i++){
-            document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+tmp[i].poster+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp[i].title+'</h2> </article>');
-        }
-
-    }
-};
-xhttp.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/tv_list/", true);
-xhttp.send();
-
-// var more = new XMLHttpRequest();
-// more.onreadystatechange = function() {
-//     if (this.status == 200 || this.status == 302) {
-//         //go ahead and do stuff:
-//         var tmp = JSON.parse(more.responseText);
-        
-//         document.getElementById("list").innerHTML = "";
-        
-//         for (var i = 0; i < tmp.length; i++){
-//             document.getElementById("list").innerHTML += '<a href="https://dev.benworld.net/sbrapi.cc/local/tv_show.html?id='+tmp[i].id+'"><div class="movie"><h5>'+tmp[i].title+'</h5><img id="poster" style="max-width:100%;" src="'+tmp[i].poster+'"></div></a>';
-//         }
-
-//         }
-// };
-// more.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/tv_list/", true);
-
-
-// // --- Functions --- //
-//     function loadMore(){
-//     document.getElementById("list").innerHTML = '<h1>Loading...</h1>';
-//     more.send();
-// }    
+ 
 </script>
   </body>
 </html>
