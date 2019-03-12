@@ -20,6 +20,8 @@
     <script src="https://bootswatch.com/_vendor/jquery/dist/jquery.min.js"></script>
     <script src="https://bootswatch.com/_vendor/popper.js/dist/umd/popper.min.js"></script>
     <script src="https://bootswatch.com/_vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- other scripts -->
+    <script src="assets/scripts/global.js"></script>
     <style>
     img[src*="https://cdn.000webhost.com/000webhost/logo/footer-powered-by-000webhost-white2.png"] {
 display: none!important;}
@@ -59,7 +61,20 @@ display: none!important;}
     <div style="height:90px;"></div>
 <!-- content -->
 <div class="container">
-  
+    <ul class="nav nav-tabs" id="tabs">
+      <li class="nav-item">
+        <a class="nav-link active" href="?type=tv" id="tv-tab">Shows</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="?type=movie" id=movie-tab>Movies</a>
+      </li>
+<!--
+      <li class="nav-item">
+        <a class="nav-link disabled" tabindex="-1" aria-disabled="true" href="?type=my">My</a>
+      </li>
+-->
+    </ul>
+    <br />
   <div id="list"></div>
   
 </div>
@@ -70,26 +85,63 @@ display: none!important;}
 //lasest.js
 
 // --- Set vars --- //
+var type = getAllUrlParams().type;
+    
+    if(type == null){
+        console.log("type not set");
+        location.href = "latest.html?type=tv";
+    }
 
 window.onload = function() {
     //window is loaded, send requests
 
-}
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.status == 200 || this.status == 302) {
-        //go ahead and do stuff:
-        document.getElementById("list").innerHTML = "";
-        
-    var tmp = JSON.parse(xhttp.responseText);
-    for (var i = 0; i < 100; i++){
-            document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp.tv[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+tmp.tv[i].poster+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp.tv[i].title+'</h2> </article>');
-        }
+    if(type == 'tv'){ // tv tab is selected //
+        var tab = document.getElementById("movie-tab");
+        tab.classList.remove("active");
+        var tab = document.getElementById("tv-tab");
+        tab.classList.add("active");
+        // request //
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.status == 200 || this.status == 302) {
+                //go ahead and do stuff:
+                document.getElementById("list").innerHTML = "";
 
-    }
-};
-xhttp.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/updates/?", true);
-xhttp.send();
+            var tmp = JSON.parse(xhttp.responseText);
+            for (var i = 0; i < tmp.tv.length; i++){
+                    document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp.tv[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+tmp.tv[i].poster+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp.tv[i].title+'</h2> </article>');
+                }
+
+            }
+        };
+        xhttp.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/updates/?", true);
+        xhttp.send();
+        
+       }else if(type == 'movie'){ // movie tab is selected //
+        
+        var tab = document.getElementById("tv-tab");
+        tab.classList.remove("active");
+        var tab = document.getElementById("movie-tab");
+        tab.classList.add("active");
+        // request //
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.status == 200 || this.status == 302) {
+                //go ahead and do stuff:
+                document.getElementById("list").innerHTML = "";
+
+            var tmp = JSON.parse(xhttp.responseText);
+            for (var i = 0; i < tmp.movie.length; i++){
+                    document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp.movie[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+tmp.movie[i].poster+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp.movie[i].title+'</h2> </article>');
+                }
+
+            }
+        };
+        xhttp.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/updates/?", true);
+        xhttp.send();
+
+       }
+}
 
 // var more = new XMLHttpRequest();
 // more.onreadystatechange = function() {
