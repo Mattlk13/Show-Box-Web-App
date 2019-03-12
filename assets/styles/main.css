@@ -115,6 +115,9 @@
     .sb-card.news a{
       width: auto;
     }
+    .sb-card.news a{
+      height: 260px;
+    }
     .sb-card.news .card__title{
       opacity:1;
     }
