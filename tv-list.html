@@ -83,7 +83,7 @@ xhttp.onreadystatechange = function() {
         
     var tmp = JSON.parse(xhttp.responseText);
     for (var i = 0; i < 100; i++){
-            document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp[i].id+'" class="card__link"> <span class="highlight"></span> <img src="https://dev.benworld.net/sb/local/ssl-proxy/'+tmp[i].poster.replace("https://", "")+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp[i].title+'</h2> </article>');
+            document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp[i].id+'" class="card__link"> <span class="highlight"></span> <img src="https://dev.benworld.net/sb/local/ssl-proxy/'+tmp[i].poster.replace(/https:\/\/|http:\/\//g, "")+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp[i].title+'</h2> </article>');
         }
 
     }
