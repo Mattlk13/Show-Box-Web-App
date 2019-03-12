@@ -13,6 +13,7 @@
         perspective: 500px;
         perspective-origin: 50% 50%;
         transform-style: preserve-3d;
+        display: inline-block;
       }
       .sb-card:hover {
         transform: scale(1.04);
