@@ -121,3 +121,19 @@
     .sb-card.news .card__title{
       opacity:1;
     }
+
+
+
+
+
+
+
+/* Media stuff */
+@media screen and (max-width: 768px){
+    .sb-card.news{
+      min-width: 100%;
+    }
+    .container.news{
+        max-width: 600px;
+    }
+}
