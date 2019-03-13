@@ -84,10 +84,13 @@ display: none!important;}
       <div class="modal-body">
         <div class="form-group">
         <label for="imageProxySelect">Image Proxy</label>
-        <select class="form-control" id="imageProxySelect">
+        <select class="form-control" id="imageProxySelect" aria-describedby="imageProxyHelpBlock">
           <option>ON</option>
           <option>OFF</option>
         </select>
+        <small id="imageProxyHelpBlock" class="form-text text-muted">
+            Turn on to have images go through the API proxy used by the app.
+        </small>
       </div>
       </div>
       <div class="modal-footer">
