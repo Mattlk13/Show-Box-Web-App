@@ -140,12 +140,33 @@
       width: 21px;
       height: 21px;
     }
+/* -- fix nav search bar on md --*/
+    .mb-2, .my-2 {
+        margin-bottom: 0 !important;
+    }
+    .mt-2, .my-2 {
+        margin-top: 0 !important;
+    }
 
 
 
 
 
 /* Media stuff */
+@media screen and (max-width: 767px){
+    .mb-2, .my-2 {
+        margin-bottom: 0.5rem !important;
+    }
+    .mt-2, .my-2 {
+        margin-top: 0.5rem !important;
+    }
+}
+@media screen and (min-width: 576px){
+    .form-inline .form-control {
+        display: flex;
+        flex-grow: 1;
+    }
+}
 @media screen and (max-width: 768px){
     .sb-card.news{
       min-width: 100%;
