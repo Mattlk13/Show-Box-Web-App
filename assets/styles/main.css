@@ -147,8 +147,31 @@
     .mt-2, .my-2 {
         margin-top: 0 !important;
     }
+/* -- colors -- */
+a {
+    color: #F7C23E;
+    cursor: pointer
+}
+.dropdown-item:hover,.dropdown-item:focus {
+    color: #fff;
+    text-decoration: none;
+    background-color: rgba(243, 156, 18, 0.92)
+}
 
-
+.dropdown-item.active,.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: rgba(235, 151, 18, 0.92)
+}
+.form-control:focus {
+    border-color: #F7C23E;
+    outline: 0;
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(201, 158, 50, 0.2);
+    box-shadow: 0 0 0 0.2rem rgba(201, 158, 50, 0.2)
+}
+.menu-item{
+    cursor: pointer;
+}
 
 
 
