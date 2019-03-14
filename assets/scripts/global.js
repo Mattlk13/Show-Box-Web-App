@@ -69,3 +69,17 @@ var imageProxy = readCookie('imageProxy');
 if(imageProxy == null){
     imageProxy = 'ON';
 }
+
+// replace images in html with proxy //
+function updateHTMLImages(html) {
+    
+  var regex = /src\s*=\s*(['"])(https?:\/\/.+?)\1/ig;   
+  var link;
+  
+  while((link = regex.exec(html)) !== null) {
+    html = html.replace(link[2], "https://dev.benworld.net/sb/local/ssl-proxy/" + link[2].replace(/https:\/\/|http:\/\//g, ""));
+  }
+  
+  return html;
+  
+}

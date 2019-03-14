@@ -172,6 +172,16 @@ a {
 .menu-item{
     cursor: pointer;
 }
+.divider {
+    height: 1px;
+    width:100%;
+    display:block;
+    overflow: hidden;
+    background-color: rgba(0,0,0,0.6);
+}
+.divider.light {
+    background-color: rgba(255,255,255,0.6);
+}
 
 
 

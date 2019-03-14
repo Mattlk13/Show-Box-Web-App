@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-      <title>Show Box Web App</title>
+      <title>Show Box Web App | About</title>
     <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
@@ -36,8 +36,8 @@
 
   <div class="collapse navbar-collapse" id="navbar">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="index.html">News <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="index.html">News</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="tv-list.html">TV Shows</a>
@@ -100,9 +100,14 @@
   </div>
 </div>
 <!-- content -->
-<div class="container news">
+<div class="container">
   
-  <div id="list"></div>
+  <h2>About</h2>
+    <hr class="divider light" />
+    <p>
+<!--    The Show Box Web App was created by Ben B. (a.k.a. Bunnbuns) for the purpose of creating a web client for the Show Box apk app. -->
+        The Show Box apk app was created for android devices, but where is a web cliaent? Right here their is.
+    </p>
   
 </div>
 
@@ -111,56 +116,31 @@
 
 <!-- End of page -->
 <script>
-//news.js
-
 // --- Set vars --- //
-
 window.onload = function() {
     //window is loaded, send requests
     if(imageProxy != null){
     document.getElementById("imageProxySelect").value = imageProxy;
     }
 }
-var xhttp = new XMLHttpRequest();
-xhttp.onreadystatechange = function() {
-    if (this.status == 200 || this.status == 302) {
-        //go ahead and do stuff:
-        document.getElementById("list").innerHTML = "";
-        
-    var tmp = JSON.parse(xhttp.responseText);
-    for (var i = 0; i < 100; i++){
-            var imageURL = tmp[i].pic;
-            if(imageProxy == 'ON'){ imageURL = 'https://dev.benworld.net/sb/local/ssl-proxy/'+tmp[i].pic.replace(/https:\/\/|http:\/\//g, ""); }
-            document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card news"> <a href="news.html?id='+tmp[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+imageURL+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp[i].head+'</h2> </article>');
-        }
-
-    }
-};
-xhttp.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/news_list/?", true);
-xhttp.send();
-
-// var more = new XMLHttpRequest();
-// more.onreadystatechange = function() {
-//     if (this.status == 200 || this.status == 302) {
-//         //go ahead and do stuff:
-//         var tmp = JSON.parse(more.responseText);
-        
-//         document.getElementById("list").innerHTML = "";
-        
-//         for (var i = 0; i < tmp.length; i++){
-//             document.getElementById("list").innerHTML += '<a href="https://dev.benworld.net/sbrapi.cc/local/tv_show.html?id='+tmp[i].id+'"><div class="movie"><h5>'+tmp[i].title+'</h5><img id="poster" style="max-width:100%;" src="'+tmp[i].poster+'"></div></a>';
-//         }
-
-//         }
-// };
-// more.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/tv_list/", true);
-
-
-// // --- Functions --- //
-//     function loadMore(){
-//     document.getElementById("list").innerHTML = '<h1>Loading...</h1>';
-//     more.send();
-// }    
+//var xhttp = new XMLHttpRequest();
+//xhttp.onreadystatechange = function() {
+//    if (this.status == 200 || this.status == 302) {
+//        //go ahead and do stuff:
+//        document.getElementById("list").innerHTML = "";
+//        
+//    var tmp = JSON.parse(xhttp.responseText);
+//    for (var i = 0; i < 100; i++){
+//        var imageURL = tmp[i].poster;
+//        if(imageProxy == 'ON'){ imageURL = 'https://dev.benworld.net/sb/local/ssl-proxy/'+tmp[i].poster.replace(/https:\/\/|http:\/\//g, ""); }
+//            document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+imageURL+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp[i].title+'</h2> </article>');
+//        }
+//
+//    }
+//};
+//xhttp.open("GET", "https://dev.benworld.net/sbrapi.cc/api/serials/tv_list/", true);
+//xhttp.send();
+    
 </script>
   </body>
 </html>
