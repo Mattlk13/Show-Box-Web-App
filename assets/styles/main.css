@@ -152,6 +152,9 @@ a {
     color: #F7C23E;
     cursor: pointer
 }
+a:hover {
+    color: #f3c85f;
+}
 .dropdown-item:hover,.dropdown-item:focus {
     color: #fff;
     text-decoration: none;
