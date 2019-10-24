@@ -186,8 +186,16 @@ a:hover {
     background-color: rgba(255,255,255,0.6);
 }
 .ep{
+    position: relative;
     display: inline-block;
+    vertical-align: top;
     width:33.33%;
+    background-color: rgba(0,0,0,0.5);
+}
+.ep h5{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding:2px 6px;
 }
 
 

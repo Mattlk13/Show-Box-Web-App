@@ -107,8 +107,17 @@
     </span>
     <p id="desc">Loading...</p>
     <div class="stats">
-      <hr /><h4 style="margin:.3rem;display:inline-block;float:right;vertical-align:middle;"><select id="seasons" onchange="goSeason(this.value)">?</select></h4>
-      <h4 style="margin:.3rem;display:inline-block;vertical-align:middle;">Episodes</h4>
+        <hr />
+        <div style="margin-top:.1rem;display:inline-block;float:right;vertical-align:middle;">
+            <div class="field">
+              <div class="control">
+                <div class="select is-small is-dark">
+                  <select id="seasons" onchange="goSeason(this.value)">?</select>
+                </div>
+              </div>
+            </div>
+        </div>
+        <h4 style="margin:0 0 1rem 0;display:inline-block;vertical-align:middle;">Episodes</h4>
     </div>
     <div id="list">
         None
