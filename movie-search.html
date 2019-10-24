@@ -152,7 +152,7 @@ window.onload = function() {
             for (var i = 0; i < tmp.length; i++){
                     var imageURL = tmp[i].poster;
                     if(imageProxy == 'ON'){ imageURL = 'https://dev.benworld.net/sb/local/ssl-proxy/'+tmp[i].poster.replace(/https:\/\/|http:\/\//g, ""); }
-                        document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card"> <a href="'+tmp[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+imageURL+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp[i].title+'</h2> </article>');
+                        document.getElementById("list").innerHTML = document.getElementById("list").innerHTML.concat('<article class="sb-card" title="'+tmp[i].title+'"> <a href="'+tmp[i].id+'" class="card__link"> <span class="highlight"></span> <img src="'+imageURL+'" alt="" class="card__image" /> </a> <h2 class="card__title">'+tmp[i].title+'</h2> </article>');
                 }
 
             }
